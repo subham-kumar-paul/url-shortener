@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}{% block head_title %}{% endblock head_title %}{% endblock title %}
+
+{% block content %}
+
+    {% block inner %}
+        <div class="container bg-secondary rounded border border-secondary">
+
+            <div class="container card shadow col-md-10 mt-3 mb-3">
+                <form class="row mt-3" method="POST"> {% csrf_token %}
+                    <div class="col-md-7">
+                      {{urlform.target_url}}
+                    </div>
+                    <div class="col-3">
+                        {{urlform.alias}}
+                    </div>
+                    <div class="col-2">
+                      <button type="submit" class="btn btn-primary mb-3">Shorten URL</button>
+                    </div>
+                  </form>
+            </div>
+            
+            
+            <div class="container card shadow col-md-10 mt-3 mb-3">
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">URL</th>
+                        <th scope="col">Shortened URL</th>
+                        <th scope="col">Created On</th>
+                        <th scope="col">No. Of clicks</th>
+                        <th scope="col">Last clicked time</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for url in urls %}
+                        <tr>
+                            <th scope="row">{{forloop.revcounter}}</th>
+                            <td><input type="text" value="{{ url.target_url }}" title="{{ url.target_url }}" class='form-control' readonly></td>
+                            <td class='d-flex align-items-center'>
+                                <span ><input id="shorted-{{url.id}}" type="text" value="{{ domain }}{{ url.alias }}" title="{{ domain }}{{ url.alias }}" class='form-control' readonly></span>
+                                <button class='btn p-0' onclick="copyText({{url.id}})">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stickies ml-3" viewBox="0 0 16 16">
+                                        <path d="M1.5 0A1.5 1.5 0 0 0 0 1.5V13a1 1 0 0 0 1 1V1.5a.5.5 0 0 1 .5-.5H14a1 1 0 0 0-1-1H1.5z"/>
+                                        <path d="M3.5 2A1.5 1.5 0 0 0 2 3.5v11A1.5 1.5 0 0 0 3.5 16h6.086a1.5 1.5 0 0 0 1.06-.44l4.915-4.914A1.5 1.5 0 0 0 16 9.586V3.5A1.5 1.5 0 0 0 14.5 2h-11zM3 3.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 .5.5V9h-4.5A1.5 1.5 0 0 0 9 10.5V15H3.5a.5.5 0 0 1-.5-.5v-11zm7 11.293V10.5a.5.5 0 0 1 .5-.5h4.293L10 14.793z"/>
+                                    </svg>
+                                </button>
+                                <a class="btn p-1" href="{% url 'delete_url' pk=url.id %}" >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+                                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+                                      </svg>
+                                </a>
+                                
+                            </td>
+                            <td>{{ url.timestamp }}</td>
+                            <td>{{ url.redirect_count }}</td>
+                            <td>{{ url.last_clicked }}</td>
+                        </tr>
+                        {% endfor %}
+                    
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+        
+
+
+    {% endblock %}
+ 
+{% endblock %}
+
+{% block inline_javascript %}
+<script>
+    function copyText(id){
+        var inputTag = document.getElementById(`shorted-${id}`)
+        inputTag.select()
+        document.execCommand('copy')
+    }
+</script>
+{% endblock inline_javascript %}
