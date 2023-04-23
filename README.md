@@ -16,6 +16,10 @@ The site is designed to be user-friendly and easy to use, with a modern and resp
 
 
 
+https://user-images.githubusercontent.com/74375422/233870959-5240ffcd-a782-4b6a-bee8-306296f5e06c.mp4
+
+
+
 
 
 
@@ -137,3 +141,5 @@ The following details how to deploy this application.
 ### Docker
 
 See detailed [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).
+
+
