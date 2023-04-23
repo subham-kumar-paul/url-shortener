@@ -8,7 +8,9 @@ When a user creates a new shortened URL, they can optionally specify a custom al
 
 The site also provides an easy-to-use form for shortening URLs. When a user enters a long URL into the form, the site generates a shortened URL and displays it on the screen. The user can then copy the shortened URL and share it with others.
 
-In addition to the user-facing features, the site also has a back-end database that stores all the links and their statistics. This allows the site to provide accurate and up-to-date statistics for each link.
+In addition to the user-facing features, the site also has a back-end database that stores all the links and their statistics. This allows the site to provide accurate and up-to-date statistics for each link. 
+
+Moreover one can reset his/her password by clicking on 'Forgot password'. An email with the reset link will be sent to his/her email id.
 
 The site is designed to be user-friendly and easy to use, with a modern and responsive interface that works well on both desktop and mobile devices. It is built using the Django framework and uses Celery for background tasks such as sending email notifications.
 
