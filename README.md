@@ -13,6 +13,12 @@ In addition to the user-facing features, the site also has a back-end database t
 The site is designed to be user-friendly and easy to use, with a modern and responsive interface that works well on both desktop and mobile devices. It is built using the Django framework and uses Celery for background tasks such as sending email notifications.
 
 
+
+
+
+
+
+
 To run this, you need to have docker installed on your pc.
 First build the docker-container by 
         $ docker-compose -f local.yml build
@@ -46,6 +52,12 @@ Click 'Add social Applications'
 Move 'http://127.0.0.1:8000' from 'Available Sites' to 'Chosen Sites'
 
 Refer this video 'https://www.youtube.com/watch?v=Gk9tsLHMMsM'
+
+
+
+
+
+
 
 
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
