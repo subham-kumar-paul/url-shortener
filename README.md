@@ -2,6 +2,70 @@
 
 The goal of this project is to create a URL shortener website that allows users to shorten long URLs and track the clicks on the shortened URLs. Additionally, the website should provide an API that allows developers to integrate the URL shortening functionality into their applications.
 
+Users can sign up and log in to the site to access their dashboard. The dashboard displays all the shortened URLs created by the user, along with their statistics, such as the total number of clicks and the date and time of the last click. The user can also edit or delete any of their links from the dashboard.
+
+When a user creates a new shortened URL, they can optionally specify a custom alias to make it more memorable. The site will check if the alias is already in use and generate a unique one if necessary.
+
+The site also provides an easy-to-use form for shortening URLs. When a user enters a long URL into the form, the site generates a shortened URL and displays it on the screen. The user can then copy the shortened URL and share it with others.
+
+In addition to the user-facing features, the site also has a back-end database that stores all the links and their statistics. This allows the site to provide accurate and up-to-date statistics for each link. 
+
+Moreover one can reset his/her password by clicking on 'Forgot password'. An email with the reset link will be sent to his/her email id.
+
+The site is designed to be user-friendly and easy to use, with a modern and responsive interface that works well on both desktop and mobile devices. It is built using the Django framework and uses Celery for background tasks such as sending email notifications.
+
+
+
+
+
+https://user-images.githubusercontent.com/74375422/233870959-5240ffcd-a782-4b6a-bee8-306296f5e06c.mp4
+
+
+
+
+
+
+To run this, you need to have docker installed on your pc.
+First build the docker-container by 
+        $ docker-compose -f local.yml build
+ 
+Once the build is done, run the following command
+        $ docker-compose -f local.yml up
+        
+Open the site by visiting 'http://127.0.0.1:8000/'
+
+While the container is up, open a new terminal and run the following commands:- 
+        $ docker-compose -f local.yml run --rm django python manage.py makemigrations
+        $ docker-compose -f local.yml run --rm django python manage.py migrate
+        $ docker-compose -f local.yml run --rm django python manage.py createsuperuser
+        
+Now, to use login through google you need to setup your google developer account and creating a new project here 'https://console.cloud.google.com/cloud-resource-manager'.
+Name:- Url Shortener
+
+Authorized JavaScript | origins URIs 1:- http://127.0.0.1:8000
+
+Authorized redirect URIs | URIs1:- http://127.0.0.1:8000/accounts/google/login/callback/
+
+Generate your Client ID and Client secret.
+
+Go to 'http://127.0.0.1:8000/admin'
+Find and go to 'Social Applications' under 'Social Accounts' in the right panel.
+Click 'Add social Applications'
+'Provider: Google'
+'Name: Url Shortener'
+'Client Id: *generated client id*'
+'Secret Key: *generated client secret*'
+Move 'http://127.0.0.1:8000' from 'Available Sites' to 'Chosen Sites'
+
+Refer this video 'https://www.youtube.com/watch?v=Gk9tsLHMMsM'
+
+
+
+
+
+
+
+
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 [![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
@@ -79,3 +143,5 @@ The following details how to deploy this application.
 ### Docker
 
 See detailed [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).
+
+
