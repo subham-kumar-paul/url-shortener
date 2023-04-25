@@ -7,7 +7,8 @@ from django.views import defaults as default_views
 from django.views.generic import TemplateView
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from rest_framework.authtoken.views import obtain_auth_token
-from url_shortener.services.views import redirect_to_target_page, delete_view
+from url_shortener.services.views import redirect_to_target_page, delete_view, gettoken
+from url_shortener.services.api.views import url_api
 
 urlpatterns = [
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
@@ -21,6 +22,8 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
     path('dashboard/', include('url_shortener.services.urls')),
+    path('gettoken/', gettoken, name="get_token"),
+    path('urlshortener/api/', url_api, name='url_api'),
     path('<str:alias>',redirect_to_target_page ),
     path('delete/<int:pk>/', delete_view, name="delete_url")
 
