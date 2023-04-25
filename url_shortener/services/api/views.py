@@ -46,22 +46,7 @@ def url_api(request):
             return Response({'details': serializer_data ,'shortened_path': f"{get_current_site(request)}{serializer_data['alias']}"})
         else:
             return Response(serializer.errors)
-    
-    # if request.method == 'PUT':
-    #     id = request.data.get('id')
-    #     stu = Student.objects.get(id=id)
-    #     serializer = StudentSerializer(stu, data=request.data, partial=True)
-    #     if serializer.is_valid():
-    #         serializer.save()
-    #         return Response({'msg': 'Data Updated'})
-    #     else:
-    #         return Response(serializer.errors)
-    
-    # if request.method == 'DELETE':
-    #     id = request.data.get('id')
-    #     stu = Student.objects.get(id=id)
-    #     stu.delete()
-    #     return Response({'msg': 'Data Deleted'})
+
 
 
 def getAlias():
